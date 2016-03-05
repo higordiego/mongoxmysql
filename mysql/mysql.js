@@ -105,7 +105,7 @@ metodo.find = function(dataSize,done){
 	var conexao      =    mysql.createConnection({
 		host     : 'localhost',
 		user     : 'root',
-		password : 'i190f200r',
+		password : '',
 		database : 'palestra',
 		debug    :  false
 	});
