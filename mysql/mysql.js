@@ -92,9 +92,9 @@ metodo.insert = function(dataSize,done){
 		});
 	}
 
-	console.time('mysql inserção')
+	console.time('mysql insert')
 	async.series(array,function(err,data){
-		console.timeEnd('mysql inserção');
+		console.timeEnd('mysql insert');
 		conexao.end();
 		if(done) done();
 	});
