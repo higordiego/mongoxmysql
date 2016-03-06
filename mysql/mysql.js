@@ -5,12 +5,45 @@ var faker 	   = require('Faker');
 
 var metodo = {};
 
+metodo.selectOneTable = function(dataSize, done){
+	var array = [];
+	var conexao      =    mysql.createConnection({
+		host     : 'localhost',
+		user     : 'root',
+		password : 'i190f200r', // senha do banco de dados
+		database : 'palestra',
+		debug    :  false
+	});
+	array.push(function(callback){
+		conexao.connect(function(err){
+			callback();
+		});
+	})
+	array.push(function(callback){
+		conexao.query('select * from time',function(err, rows, fields){
+			if(!err){
+				return callback();	
+			}else{
+				console.log('erro na busca',err);
+			}
+
+		})
+	});
+	console.time('mysql select One Table')
+	async.series(array,function(err,data){
+		console.timeEnd('mysql select One Table');
+		conexao.end();
+		if(done) done();
+	});
+
+}
+
 metodo.insert = function(dataSize,done){
 	var array = [];
 	var conexao      =    mysql.createConnection({
 		host     : 'localhost',
 		user     : 'root',
-		password : '',
+		password : 'i190f200r', // senha do banco de dados
 		database : 'palestra',
 		debug    :  false
 	});
@@ -105,7 +138,7 @@ metodo.find = function(dataSize,done){
 	var conexao      =    mysql.createConnection({
 		host     : 'localhost',
 		user     : 'root',
-		password : '',
+		password : 'i190f200r',
 		database : 'palestra',
 		debug    :  false
 	});
