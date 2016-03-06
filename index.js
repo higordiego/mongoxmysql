@@ -43,6 +43,7 @@ async.series([
 	function(callback){
 		console.log('\n');
 		console.log('Teste em Mysql com tamanho de dados de:'+dataSize);
+		console.log('');
 		callback();
 	},
 	function(callback){

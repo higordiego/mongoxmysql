@@ -106,10 +106,10 @@ metodo.deleteCollectionID  = function(dataSize,done){
 	array.push(function(callback){
 		Time.remove({_id: id},callback);	
 	});
-	console.time('Mongo Removendo 1 Documento');
+	console.time('Mongo deletando 1 Documento');
 
 	async.series(array,function(err,data){
-		console.timeEnd('Mongo Removendo 1 Documento');
+		console.timeEnd('Mongo deletando 1 Documento');
 		if(done) done();
 	});
 
