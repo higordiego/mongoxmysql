@@ -1,8 +1,11 @@
 var spinner = require("char-spinner");
 var async = require("async");
+
 spinner();
 
-var dataSize = 1000;
+
+
+var dataSize = 100000;
 
 
 async.series([
@@ -43,7 +46,6 @@ async.series([
 	function(callback){
 		console.log('\n');
 		console.log('Teste em Mysql com tamanho de dados de:'+dataSize);
-		console.log('');
 		callback();
 	},
 	function(callback){
