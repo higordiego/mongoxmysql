@@ -57,111 +57,123 @@ metodo.selectOneCollection = function(dataSize,done){
 		Time.find({},callback);	
 	})
 
-	console.time('Mongo Select Collection');
+	console.time('Mongo Select 1 Collection');
 
 	async.series(array,function(err,data){
-		console.timeEnd('Mongo Select Collection');
+		console.timeEnd('Mongo Select 1 Collection');
 		if(done) done();
 	});
 	
 }
+
+
 
 metodo.selectOneCollectionID = function(dataSize,done){
 	var array = []
 	array.push(function(callback){
 		Time.find({_id: id},callback);
 	})
-	console.time('Mongo Select One Collection Buscar por ID');
+	console.time('Mongo Select One Collection Busca por ID');
 
 	async.series(array,function(err,data){
-		console.timeEnd('Mongo Select One Collection Buscar por ID');
+		console.timeEnd('Mongo Select One Collection Busca por ID');
 		if(done) done();
 	});
 	
 }
 
 
- metodo.updateOneCollection = function(dataSize,done){
- 	var array = [];
- 	array.push(function(callback){
- 		var time = new Time();
- 		console.time('Mongo OneUpdate Collection');
+metodo.updateOneCollection = function(dataSize,done){
+	var array = [];
+	array.push(function(callback){
+		var time = new Time();
+		console.time('Mongo Update 1 Documento');
 
- 		time.update({_id: id},{$set:{ cidade:faker.Address.city(),
- 			pais:  faker.Address.ukCountry(), 
- 			nome: faker.Company.companyName().split(" ")[0].split(",")[0]}},function(err){
- 				if(!err){
- 					callback();
- 				}else{
- 					console.log(err);
- 				}
- 			});
- 	})
- 	async.series(array,function(err,data){
- 		console.timeEnd('Mongo OneUpdate Collection');
- 		if(done) done();
- 	}); 		
- }
-
- metodo.insert = function(dataSize,done){
- 	var array = [];
-
- 	array.push(function(callback){
- 		User.remove({},callback);
- 	})
-
- 	array.push(function(callback){
- 		Time.remove({},callback);
- 	})
-
- 	for(var i=0;i<dataSize;i++){
- 		array.push(function(callback){
- 			var user = new User();
- 			var time = new Time();
- 			time.usuario = user._id;
- 			time.cidade = faker.Address.city(),
- 			time.pais = faker.Address.ukCountry(),
- 			time.nome = faker.Company.companyName().split(" ")[0].split(",")[0]
- 			user.nome = faker.Name.findName();
- 			user.email = faker.Internet.email();
- 			user.pontuacao = Math.floor(Math.random()*1000);
- 			user.save({},function(err){
- 				if(!err){
- 					time.save({},callback);
- 				}
- 			});
-
- 		});
-
- 	}
-
- 	console.time('mongo insert');
-
- 	async.series(array,function(err,data){
- 		console.timeEnd('mongo insert');
- 		if(done) done();
- 	});
- }
-
- metodo.find = function(dataSize,done){
- 	console.time('mongo select');
- 	var array =[];
- 	array.push(function(callback){
- 		Time
- 		.find({})
- 		.populate('usuario')
- 		.exec({},callback);
- 	});
-
- 	async.series(array,function(err,data){
- 		console.timeEnd('mongo select');
- 		if(done) done();
- 	});
-
- }
+		time.update({_id: id},{$set:{ cidade:faker.Address.city(),
+			pais:  faker.Address.ukCountry(), 
+			nome: faker.Company.companyName().split(" ")[0].split(",")[0]}},callback);
+	})
+	async.series(array,function(err,data){
+		console.timeEnd('Mongo Update 1 Documento');
+		if(done) done();
+	}); 		
+}
 
 
- module.exports = function(type,dataSize,done){
- 	return metodo[type](dataSize,done);
- }
+metodo.deleteCollectionID  = function(dataSize,done){
+	var array = [];
+
+	array.push(function(callback){
+		Time.remove({_id: id},callback);	
+	});
+	console.time('Mongo Removendo 1 Documento');
+
+	async.series(array,function(err,data){
+		console.timeEnd('Mongo Removendo 1 Documento');
+		if(done) done();
+	});
+
+}
+
+metodo.insert = function(dataSize,done){
+	var array = [];
+
+	array.push(function(callback){
+		User.remove({},callback);
+	})
+
+	array.push(function(callback){
+		Time.remove({},callback);
+	})
+
+	for(var i=0;i<dataSize;i++){
+		array.push(function(callback){
+			var user = new User();
+			var time = new Time();
+			time.usuario = user._id;
+			time.cidade = faker.Address.city(),
+			time.pais = faker.Address.ukCountry(),
+			time.nome = faker.Company.companyName().split(" ")[0].split(",")[0]
+			user.nome = faker.Name.findName();
+			user.email = faker.Internet.email();
+			user.pontuacao = Math.floor(Math.random()*1000);
+			user.save({},function(err){
+				if(!err){
+					time.save({},callback);
+				}
+			});
+
+		});
+
+	}
+
+	console.time('Mongo Insert 2 Collection');
+
+	async.series(array,function(err,data){
+		console.timeEnd('Mongo Insert 2 Collection');
+		if(done) done();
+	});
+}
+
+metodo.find = function(dataSize,done){
+	console.time('Mongo 2 Collection Function Populate');
+	var array =[];
+	array.push(function(callback){
+		Time
+		.find({})
+		.populate('usuario')
+		.exec({},callback);
+	});
+
+	async.series(array,function(err,data){
+		console.timeEnd('Mongo 2 Collection Function Populate');
+		if(done) done();
+	});
+
+}
+
+
+module.exports = function(type,dataSize,done){
+	return metodo[type](dataSize,done);
+}
 
