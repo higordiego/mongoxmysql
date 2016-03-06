@@ -20,7 +20,7 @@ node index.js
 ```
 
 #### Configuração
-Configurando o Banco Mysql, no arquivo mysql/mysql.js terá que criar o banco de dados no mysql depois vá no arquivo e modifique senha e usuário do seu banco mysql
+Configurando o Banco Mysql, no arquivo mysql/mysql.js terá que criar o banco de dados no mysql depois vá no arquivo e modifique senha e usuário do seu banco.
 
 ```
 var conexao      =    mysql.createConnection({
