@@ -4,7 +4,6 @@ var async = require("async");
 spinner();
 
 
-
 var dataSize = 100000;
 
 
