@@ -20,7 +20,7 @@ node index.js
 ```
 
 #### Configuração
-Configurando o Banco Mysql, no arquivo mysql/mysql.js terá que criar o banco de dados no mysql depois vá no arquivo e modifique senha e usuário do seu banco.
+Configurando o Banco Mysql, no arquivo mysql/mysql.js terá  que modifique senha e usuário do seu banco.
 
 ```
 var conexao      =    mysql.createConnection({
@@ -30,6 +30,16 @@ var conexao      =    mysql.createConnection({
 	database : 'palestra', // Banco de dados
 	debug    :  false //Debug do banco de dados
 });
+
+```
+
+
+Após a configuração do arquivo terá que entrar no console do Mysql, criar um banco de dados chamado "palestra"
+
+```
+mysql -u root -p
+
+create database palestra
 
 ```
 
