@@ -6,7 +6,7 @@
 
 #### Requisito
 
-Ter o banco de dados mysql e mongodb instalado na maquina de teste e criar um database  no mysql com o nome palestra.
+Ter o banco de dados mysql, mongodb e nodejs instalado na maquina.
 
 #### Instalando 
 
