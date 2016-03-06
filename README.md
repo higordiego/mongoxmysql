@@ -19,8 +19,8 @@ npm install
 node index.js
 ```
 
-
-#Configurando o Banco Mysql, no arquivo mysql/mysql.js terá que criar o banco de dados no mysql depois vá no arquivo e modifique senha e usuário do seu banco mysql
+#### Configuração
+Configurando o Banco Mysql, no arquivo mysql/mysql.js terá que criar o banco de dados no mysql depois vá no arquivo e modifique senha e usuário do seu banco mysql
 ```
 create database palestra;
 
