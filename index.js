@@ -1,45 +1,50 @@
-var spinner = require("char-spinner");
-var async = require("async");
+var spinner 	= require("char-spinner")
+,	 async 		= require("async")
+,	 mongo 		= require('./mongo/mongoConexao')
+,	 User    	= require('./mongo/user')
+,	 Time    	= require('./mongo/times');
+
+
 
 spinner();
 
 
-var dataSize = 100000;
+var dataSize = 100;
+
 
 
 async.series([
 	function(callback){
 		console.log('Teste em MongoDB com tamanho de dados de:'+dataSize);
-		console.log('');
 		callback();
 	},
 	function(callback){
 		require('./mongo/mongo')('insert',dataSize,callback);
 	},
 	function(callback){
-		
+
 		require('./mongo/mongo')('selectId',dataSize,callback);
 	},
 	function(callback){
-		
+
 		require('./mongo/mongo')('selectOneCollection',dataSize,callback);
 	},
-	
+
 	function(callback){
-		
+
 		require('./mongo/mongo')('selectOneCollectionID',dataSize,callback);
 	},
-	
+
 	function(callback){
-		
+
 		require('./mongo/mongo')('updateOneCollection',dataSize,callback);
 	},
 	function(callback){
-		
+
 		require('./mongo/mongo')('deleteCollectionID',dataSize,callback);
 	},
 	function(callback){
-		
+
 		require('./mongo/mongo')('find',dataSize,callback);
 	},
 	function(callback){
@@ -70,3 +75,5 @@ async.series([
 	],function(){
 		process.exit();
 	})
+
+	

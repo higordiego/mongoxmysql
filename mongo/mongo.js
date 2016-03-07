@@ -1,35 +1,13 @@
-var mongoose = require('mongoose')
-,	Schema = mongoose.Schema
-,   db = mongoose.connection
-,   ObjectId = mongoose.Schema.Types.ObjectId
-,	async 	   = require('async')
-,   faker 	   = require('Faker');
+var mongoose 	= require('mongoose')
+,	mongo 		= require('./mongoConexao')
+,	User   		= require('./user')
+,	Time 		= require('./times')
+,	async 	    = require('async')
+,   faker 	    = require('Faker');
 
-mongoose.connect('mongodb://localhost/palestra', function(err){
-	if(err) {
-		console.log("Error conectar mongo db: " + err);
-	} 
-});
-db.on('error', console.error.bind(console, 'Connection error:'));
-db.once('open', function() {
-	
-});	
+faker.locale = "pt_BR";
 
-var user = new Schema({
-	nome: 			{ type: String},
-	email: 			{ type: String},
-	pontuacao: 		{ type: String}
-});
-var User = mongoose.model('User', user);
 
-var time = new Schema({
-	usuario: 		{ type: ObjectId, ref: 'User'},
-	nome: 			{ type: String},
-	pais: 			{ type: String},
-	cidade: 		{ type: String}
-});
-
-var Time = mongoose.model('Time', time);
 
 var metodo = {};
 
@@ -117,7 +95,6 @@ metodo.deleteCollectionID  = function(dataSize,done){
 
 metodo.insert = function(dataSize,done){
 	var array = [];
-
 	array.push(function(callback){
 		User.remove({},callback);
 	})
