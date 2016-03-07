@@ -1,9 +1,8 @@
 ### Comparativo entre banco nosql(mongodb) e relacional(Mysql) usando nodejs
 
-
 #### Requisito
 
-Ter o banco de dados mysql e mongodb instalado na maquina de teste.
+Ter o banco de dados mysql, mongodb e nodejs instalado na maquina.
 
 #### Instalando 
 
@@ -14,12 +13,10 @@ npm install
 node index.js
 ```
 
-
-#Configurando o Banco Mysql, no arquivo mysql/mysql.js terá que criar o banco de dados no mysql depois vá no arquivo e modifique senha e usuário do seu banco mysql
+#### Configuração
+Configurando o Banco Mysql, no arquivo mysql/mysql.js terá  que modifique senha e usuário do seu banco.
 
 ```
-create database palestra;
-
 var conexao      =    mysql.createConnection({
 	host     : 'localhost', //Host onde se encontra o banco de dados
 	user     : 'root', // login do banco de dados
@@ -27,6 +24,15 @@ var conexao      =    mysql.createConnection({
 	database : 'palestra', // Banco de dados
 	debug    :  false //Debug do banco de dados
 });
+
+```
+
+Após a configuração do arquivo terá que entrar no console do Mysql, criar um banco de dados chamado "palestra"
+
+```
+mysql -u root -p
+
+create database palestra
 
 ```
 
