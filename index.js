@@ -1,6 +1,5 @@
 var spinner 	= require("char-spinner")
 ,	 async 		= require("async")
-,	 mongo 		= require('./mongo/mongoConexao')
 ,	 User    	= require('./mongo/user')
 ,	 Time    	= require('./mongo/times');
 
@@ -10,7 +9,6 @@ spinner();
 
 
 var dataSize = 100;
-
 
 
 async.series([
