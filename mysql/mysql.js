@@ -7,7 +7,7 @@ var metodo = {};
 var conexao      =    mysql.createConnection({
 	host     : 'localhost',
 	user     : 'root',
-	password : 'i190f200r', // Senha do
+	password : '', // Senha do
 	database : 'palestra',
 	debug    :  false
 });
